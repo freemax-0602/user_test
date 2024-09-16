@@ -1,0 +1,7 @@
+---
+
+- name: Adds user
+  hosts: all
+  become: true
+  roles: 
+    - user_manager

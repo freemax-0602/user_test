@@ -1,0 +1,22 @@
+---
+
+users_test: 
+  - name: otus
+    group: users
+    shell: "/bin/bash"
+    passwd: $6$oMXXiXbBCxQszLRl$vA/oMkjTtRkaFjVdUYKrJAc7z9fqA1pEgkVFs5GHqYg5YpbUiNbkxggSoKvv/W0WP1IEWuG14T8YGf5.DpavL0
+ 
+  - name: otusadm
+    group: admin
+    shell: "/bin/bash"
+    passwd: $6$oMXXiXbBCxQszLRl$vA/oMkjTtRkaFjVdUYKrJAc7z9fqA1pEgkVFs5GHqYg5YpbUiNbkxggSoKvv/W0WP1IEWuG14T8YGf5.DpavL0
+
+admin_users:
+  - name: vagrant
+    group: admin
+
+  - name: root
+    group: admin
+
+  - name: otusadm
+    group: admin

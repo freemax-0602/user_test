@@ -1,0 +1,37 @@
+---
+
+- name: create group
+  group:
+    name: admin
+    state: present
+
+- name: create prometheus system user
+  user:
+    name: "{{ item.name }}"
+    shell: "{{ item.shell }}"
+    group: "{{ item.group }}"
+    password: "{{ item.passwd }}"
+    createhome: true
+    state: present
+    password: "{{ item.passwd }}"
+  with_items: '{{ users_test }}' 
+
+- name: adds system users in group
+  user: 
+    name: "{{ item.name }}"
+    system: true
+    groups: "{{ item.group }}"
+    append: yes
+    state: present
+  with_items: '{{ admin_users }}'
+
+- name: copy Pam-script on host
+  template:
+    src: login.sh.j2
+    dest: /usr/local/bin/login.sh   
+    mode: 0644
+
+- name: copy PAM-configuration on host
+  template: 
+    src: common-auth.j2
+    dest: /etc/pam.d/common-auth
